@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts}
+% \usepackage{c}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[]{algorithm2e}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{caption}
+\usepackage{amssymb}
+
+
+\textheight=250truemm \textwidth=160truemm 
+\hoffset=-10truemm \voffset=-20truemm
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Ukrainian Catholic University}\\[1cm] % Name of your university/college
+\textsc{\Large  Faculty of Applied Sciences}\\[0.5cm] % Major heading such as course name
+\textsc{\large Computer Science Program}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+\vspace*{1cm}
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Geospatial System for GPS-Independent Navigation Planning}\\[10pt]
+{\Large \bfseries Thesis Proposal}\\[0.4cm] % Title of your document
+\HRule \\[1cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vspace*{1cm}
+
+\Large \emph{Author:}\\
+Maksym \textsc{Mykhasyuta}\\ % Your name
+\Large \emph{Supervisor:}\\
+Vasyl \textsc{Mylko}\\ % Your name
+
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+\vspace*{1cm}
+{\large 01 December 2024}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[height=5cm]{combined_logo.png}\\[1cm]
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+
+\section*{Background and Motivation}
+Modern aerial vehicles rely heavily on GPS for navigation, but failures in GPS—due to signal interference, jamming, or other technical issues—can compromise safety. In such cases, alternative navigation methods that utilize visual geospatial features become crucial. Current solutions often rely on specific object recognition, which requires significant computational resources and may falter in dynamic environments.
+
+
+This research draws inspiration from urban morphology and street network analysis. Louf and Barthelemy's classification of street patterns\cite{remi_2014} offers a macro-level understanding of urban layouts, while Boeing's entropy metrics \cite{Boeing_2019} provide a framework for quantifying spatial order and complexity. Together, these approaches can form the basis for creating city fingerprints, identifying regions with distinctive geospatial features that pilots or autonomous systems can use for navigation in GPS-denied scenarios.
+
+By leveraging OpenStreetMap (OSM) data and geospatial analysis techniques\cite{Boeing2017}, this research seeks to integrate existing methods into a streamlined system for recommending visually recognizable flight paths. This system bridges the gap between theoretical urban studies and practical aviation needs.
+
+\section*{Problem Formulation}
+Small aircraft, both autonomous and man-operated, lack a reliable backup navigation system in the absence of GPS, particularly over urban areas. While object-recognition algorithms can match specific features, these are computationally intensive and unsuitable for real-time use in critical situations. No widely available system identifies and recommends flight paths over regions with high geospatial distinctiveness, such as settlements, infrastructure, and shaped parks with many unique objects visible from above.
+
+This research aims to address the following questions:
+\begin{itemize}
+    \item How can visually distinctive regions be identified using geospatial data?
+    \item What metrics or criteria can best quantify the recognizability of these regions?
+    \item How can an efficient algorithm recommend flight paths that maximize visual distinctiveness?
+\end{itemize}
+
+\section*{Project Aims and Deliverables}
+\subsection*{Aims}
+\begin{itemize}
+    \item Develop a methodology for identifying geospatially distinctive regions using OSM data.
+    \item Propose a simple and efficient algorithm for recommending navigation paths over these regions.
+    \item Validate the system through simulations or case studies.
+\end{itemize}
+
+\subsection*{Deliverables}
+\begin{enumerate}
+    \item A processed dataset highlighting geospatially distinctive regions in selected urban areas.
+    \item An algorithm for generating flight paths between a starting point and destination based on these regions.
+    \item Visualizations of recommended paths using GIS tools (e.g., QGIS, Folium, or Google Earth Pro).
+    \item A final thesis document detailing the methodology, results, and limitations.
+\end{enumerate}
+
+\section*{Project Timeline}
+\begin{itemize}
+    \item \textbf{Month 1:} Literature review, analyze key papers and extract OSM street data for selected regions. Begin calculating basic metrics such as intersection density and street orientation.
+    \item \textbf{Month 2:} Identify geospatially distinctive regions using street network analysis and entropy metrics. Develop a basic path recommendation algorithm.
+    \item \textbf{Month 3:} Test and validate the algorithm using simulated routes. Generate static or interactive maps to showcase results.
+    \item \textbf{Month 4:} Refine algorithm performance and validate results further. Begin writing the thesis.
+    \item \textbf{Month 5:} Complete and polish the thesis. Prepare defense presentation and submit all deliverables.
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{references.bib}
+
+\end{document}
