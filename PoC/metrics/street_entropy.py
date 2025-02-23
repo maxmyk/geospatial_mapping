@@ -18,11 +18,13 @@ def calculate_street_orientation_entropy(edges):
 
 
 def plot_polar_entropy(angle_counts):
-    bin_centers = np.linspace(0, 360, 36, endpoint=False) + 5  # Center bins
+    bin_centers = np.linspace(0, 360, 36, endpoint=False) + 10
     theta = np.radians(bin_centers)  # Convert to radians
     fig, ax = plt.subplots(subplot_kw={"projection": "polar"}, figsize=(6, 6))
     ax.bar(theta, angle_counts, width=np.radians(10), edgecolor="black", alpha=0.7)
     ax.set_theta_zero_location("N")
     ax.set_theta_direction(-1)
     ax.set_title("Street Orientation Distribution (Entropy)")
+    ax.set_xticks(np.radians([0, 90, 180, 270]))
+    ax.set_xticklabels(["N", "W", "S", "E"])
     plt.show()
