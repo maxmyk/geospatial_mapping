@@ -8,7 +8,7 @@ entropy, and quantify scene distinctiveness.
 
 By looking at foundational works from the mid-20th century and comparing them with modern
 methodologies, we can see that while general urban
-morphology has been well studied, the specific topic of scene uniqueness in spatial networks
+morphology has been well studied, the specific topic of scene uniqueness and distinctiveness in spatial networks
 is an emerging area with room for further exploration.
 
 \section{Urban Spatial Order and Street Network Typologies}
@@ -33,27 +33,34 @@ tied to scene uniqueness.
 Building on these ideas, \citet{remi_2014} developed a typology of street patterns, showing how
 different cities exhibit unique structural characteristics. Their clustering approach classified
 cities into distinct groups based on the shape and distribution of urban blocks. This work provides
-a valuable framework for understanding how spatial arrangements contribute to distinctiveness
+a framework for understanding how spatial arrangements contribute to distinctiveness
 but does not directly focus on scene recognizability.
 
 One of the major studies in this domain is \textit{Urban spatial order: street network orientation,
 configuration, and entropy} by \citet{Boeing_2019}, which investigates the
 orientation, configuration, and entropy of street networks across 100 cities worldwide
-using OpenStreetMap (OSM) data and the OSMnx toolkit. Boeing uses orientation entropy to
-measure the degree of disorder in urban layouts, finding that American cities tend to be
+using OpenStreetMap (OSM) \cite{OpenStreetMap} data and the OSMnx \cite{osmnx} toolkit. Boeing uses orientation entropy to
+measure the degrees of order and disorder in urban layouts, finding that American cities tend to be
 highly ordered while European cities exhibit higher entropy due to organic growth patterns - Figures \ref{fig:polar_histograms} and \ref{fig:street_orientation_entropy}.
-However, his research does not extend to how these patterns contribute to geospatial
+However, his research also does not extend to how these patterns contribute to geospatial
 distinctiveness from a navigational perspective.
 
 We can see the street orientation entropy for Lviv, Lviv Oblast, Ukraine, calculated
 using the methodology proposed by \citet{Boeing_2019} in Figure \ref{fig:street_orientation_entropy}.,
-and preliminary data for the future analysis of urban scene uniqueness in Lviv, Lviv Oblast, Ukraine in Figure \ref{fig:urban_analysis_metrics}.
+and preliminary data for the future analysis of urban scene uniqueness in Lviv, Lviv Oblast, Ukraine and Manhattan, New York, USA in Figures \ref{fig:urban_analysis_metrics} and \ref{fig:urban_analysis_metrics_manhattan}
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\textwidth]{../polar_histograms_ManhattanBoston.png}
     \caption{Street networks and corresponding polar histograms for Manhattan and Boston. \citet{Boeing_2019}}
     \label{fig:polar_histograms}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../urban_analysis_metrics_ManhattanNewYorkUSA.png}
+    \caption{Urban analysis metrics for Manhattan, New York, USA.}
+    \label{fig:urban_analysis_metrics_manhattan}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -77,7 +84,8 @@ These measures are useful for assessing how different urban areas develop distin
 The study introduced visual representations of orientation histograms, kernel density plots,
 and length entropy as tools to capture the unique structure of city layouts, 
 which are highly relevant to scene uniqueness, as well as \textit{variation in length entropy 
-with distance from the centre of the street network} - see Figure \ref{fig:variation_length_entropy}.
+with distance from the centre of the street network}, which can be used as a separate metric in cases
+when the whole area can't be viewed at once - see Figure \ref{fig:variation_length_entropy}.
 
 
 \section{Research Gaps and Contribution}
