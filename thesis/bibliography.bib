@@ -1,56 +1,148 @@
-% Example of citing the article (scientific paper)
-@article{einstein,
-    author =       "Albert Einstein",
-    title =        "{Zur Elektrodynamik bewegter K{\"o}rper}. ({German})
-    [{On} the electrodynamics of moving bodies]",
-    journal =      "Annalen der Physik",
-    volume =       "322",
-    number =       "10",
-    pages =        "891--921",
-    year =         "1905",
-    DOI =          "http://dx.doi.org/10.1002/andp.19053221004",
-    keywords =     "physics"
+@misc{remi_2014,
+  title  = {A typology of street patterns},
+  author = {Rémi Louf, Marc Barthelemy},
+  year   = {2014},
+  note   = {Retrieved from \url{https://arxiv.org/abs/1410.2094}}
 }
 
-% Example of citing the book. A good practice is to show page numbers referenced too: \cite[p.~150]{dirac}.
-@book{dirac,
-    title={The Principles of Quantum Mechanics},
-    author={Paul Adrien Maurice Dirac},
-    isbn={9780198520115},
-    series={International series of monographs on physics},
-    year={1981},
-    publisher={Clarendon Press},
-    keywords = {physics}
+@article{Boeing_2019,
+  title     = {Urban spatial order: street network orientation, configuration, and entropy},
+  volume    = {4},
+  issn      = {2364-8228},
+  url       = {http://dx.doi.org/10.1007/s41109-019-0189-1},
+  doi       = {10.1007/s41109-019-0189-1},
+  number    = {1},
+  journal   = {Applied Network Science},
+  publisher = {Springer Science and Business Media LLC},
+  author    = {Boeing, Geoff},
+  year      = {2019},
+  month     = aug
 }
 
-% Example of citing the conference proceedings 
-@inproceedings{Chien_2019,
-   title={Performance Evaluation of Advanced Features in CUDA Unified Memory},
-   booktitle={2019 IEEE/ACM Workshop on Memory Centric High Performance Computing (MCHPC)}, 
-   ISBN={9781728160078},
-   url={http://dx.doi.org/10.1109/MCHPC49590.2019.00014},
-   DOI={10.1109/mchpc49590.2019.00014},
-   journal={2019 IEEE/ACM Workshop on Memory Centric High Performance Computing (MCHPC)},
-   publisher={IEEE},
-   author={Chien, Steven and Peng, Ivy and Markidis, Stefano},
-   year={2019},
-   month={11},
-   pages={50-57},
+@article{porta2006,
+  author  = {Sergio Porta and Paolo Crucitti and Vito Latora},
+  title   = {The Network Analysis of Urban Streets: A Primal Approach},
+  journal = {Environment and Planning B: Planning and Design},
+  volume  = {33},
+  number  = {5},
+  pages   = {705-725},
+  year    = {2006},
+  doi     = {10.1068/b32045},
+  url     = {https://doi.org/10.1068/b32045},
+  eprint  = {https://doi.org/10.1068/b32045}
 }
 
-% Example of citing Internet sources, including the manuals
-@misc{cpu_freq,
-	title        = "{CPU DB} clock frequency history",
-	key        = "{CPU DB} clock frequency history",
-	year         = "2021",
-	publisher         = "Stanford {VLSI} Group",
-	url = "http://cpudb.stanford.edu/visualize/clock\_frequency",
+@misc{porta2004,
+  title         = {The Network Analysis of Urban Streets: A Dual Approach},
+  author        = {Sergio Porta and Paolo Crucitti and Vito Latora},
+  year          = {2004},
+  eprint        = {cond-mat/0411241},
+  archiveprefix = {arXiv},
+  primaryclass  = {cond-mat.other},
+  url           = {https://arxiv.org/abs/cond-mat/0411241}
 }
 
-@misc{gpudirect, 
-    title = {{GPUDirect}},
-    key={GPUDirect}, 
-    url={https://developer.nvidia.com/gpudirect}, 
-    journal={NVIDIA Developer}, 
-    year={2022}
+@article{Boeing2017,
+  title     = {OSMnx: A Python package to work with graph-theoretic OpenStreetMap street networks},
+  author    = {Geoff Boeing},
+  year      = {2017},
+  doi       = {10.21105/joss.00215},
+  url       = {https://doi.org/10.21105/joss.00215},
+  publisher = {The Open Journal},
+  volume    = {2},
+  number    = {12},
+  pages     = {215},
+  journal   = {Journal of Open Source Software}
+}
+
+@article{morphogenesis2021,
+  title     = {Urban morphogenesis analysis based on geohistorical road data},
+  volume    = {7},
+  issn      = {2364-8228},
+  url       = {http://dx.doi.org/10.1007/s41109-021-00440-0},
+  doi       = {10.1007/s41109-021-00440-0},
+  number    = {1},
+  journal   = {Applied Network Science},
+  publisher = {Springer Science and Business Media LLC},
+  author    = {El Gouj,  Hanae and Rincón-Acosta,  Christian and Lagesse,  Claire},
+  year      = {2022},
+  month     = jan
+}
+
+@article{networkscience2022,
+  author         = {Wu, Cai and Wang, Yanwen and Wang, Jiong and Kraak, Menno-Jan and Wang, Mingshu},
+  title          = {Mapping Street Patterns with Network Science and Supervised Machine Learning},
+  journal        = {ISPRS International Journal of Geo-Information},
+  volume         = {13},
+  year           = {2024},
+  number         = {4},
+  article-number = {114},
+  url            = {https://www.mdpi.com/2220-9964/13/4/114},
+  issn           = {2220-9964},
+  abstract       = {This study introduces a machine learning-based framework for mapping street patterns in urban morphology, offering an objective, scalable approach that transcends traditional methodologies. Focusing on six diverse cities, the research employed supervised machine learning to classify street networks into gridiron, organic, hybrid, and cul-de-sac patterns with the street-based local area (SLA) as the unit of analysis. Utilising quantitative street metrics and GIS, the study analysed the urban form through the random forest method, which reveals the predictive features of urban patterns and enables a deeper understanding of the spatial structures of cities. The findings showed distinctive spatial structures, such as ring formations and urban cores, indicating stages of urban development and socioeconomic narratives. It also showed that the unit of analysis has a major impact on the identification and study of street patterns. Concluding that machine learning is a critical tool in urban morphology, the research suggests that future studies should expand this framework to include more cities and urban elements. This would enhance the predictive modelling of urban growth and inform sustainable, human-centric urban planning. The implications of this study are significant for policymakers and urban planners seeking to harness data-driven insights for the development of cities.},
+  doi            = {10.3390/ijgi13040114}
+}
+
+@article{entropy2020,
+  title     = {Entropy and order in urban street networks},
+  volume    = {3},
+  issn      = {2045-2322},
+  url       = {http://dx.doi.org/10.1038/srep03324},
+  doi       = {10.1038/srep03324},
+  number    = {1},
+  journal   = {Scientific Reports},
+  publisher = {Springer Science and Business Media LLC},
+  author    = {Gudmundsson,  Agust and Mohajeri,  Nahid},
+  year      = {2013},
+  month     = nov
+}
+
+@article{centrality2021,
+  doi       = {10.5522/04/15191601},
+  url       = {https://rdr.ucl.ac.uk/articles/dataset/The_structure_centrality_and_scale_of_urban_street_networks_Cases_from_Pre-Industrial_Afro-Eurasia_Supplementary_Material/15191601},
+  author    = {Altaweel,  Mark and Hanson,  John and Squitieri,  Andrea},
+  keywords  = {Archaeology,  Geography},
+  title     = {The structure,  centrality,  and scale of urban street networks: Cases from Pre-Industrial Afro-Eurasia: Supplementary Material},
+  publisher = {University College London},
+  year      = {2021},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
+
+@article{geolocalization2020,
+  author     = {Yongfei Li and
+                Dongfang Yang and
+                Shicheng Wang and
+                Hao He},
+  title      = {Road-network-based Rapid Geolocalization},
+  journal    = {CoRR},
+  volume     = {abs/1906.12174},
+  year       = {2019},
+  url        = {http://arxiv.org/abs/1906.12174},
+  eprinttype = {arXiv},
+  eprint     = {1906.12174},
+  timestamp  = {Sat, 31 Aug 2019 16:23:05 +0200},
+  biburl     = {https://dblp.org/rec/journals/corr/abs-1906-12174.bib},
+  bibsource  = {dblp computer science bibliography, https://dblp.org}
+}
+
+@book{Lynch1960,
+  title     = {The image of the city},
+  author    = {Lynch, Kevin},
+  publisher = {MIT Press},
+  series    = {Harvard-MIT Joint Center for Urban Studies Series},
+  month     = jan,
+  year      = 1960,
+  address   = {London, England}
+}
+
+@article{9170807,
+  author   = {Li, Yongfei and Yang, Dongfang and Wang, Shicheng and He, Hao and Hu, Jiaxing and Liu, Huaping},
+  journal  = {IEEE Transactions on Geoscience and Remote Sensing},
+  title    = {Road-Network-Based Fast Geolocalization},
+  year     = {2021},
+  volume   = {59},
+  number   = {7},
+  pages    = {6065-6076},
+  keywords = {Roads;Geology;Image segmentation;Urban areas;Three-dimensional displays;Geographic information systems;Network topology;Aerial image;geolocalization;homography transformation;road intersection},
+  doi      = {10.1109/TGRS.2020.3011034}
 }
