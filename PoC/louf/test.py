@@ -79,17 +79,22 @@ def plot_fingerprint(city_name):
     cmap = plt.cm.viridis
     colors = [
         cmap(i / max(bin_indices)) for i in bin_indices
-    ]  # That's incorrect, bit ok for PoC
+    ]  # That's incorrect, but ok for PoC
+    # plt.scatter(
+        # block_data[:, 1], block_data[:, 0], c=colors, alpha=0.7, edgecolors="k", s=10
+    # )
+    # point size should correlate with area
     plt.scatter(
-        block_data[:, 1], block_data[:, 0], c=colors, alpha=0.7, edgecolors="k", s=10
+        block_data[:, 1], block_data[:, 0], c=colors, alpha=0.7, edgecolors="k", s=block_data[:, 0] / 10000
     )
+
     plt.xlim(0, 1)
     plt.yscale("log")
     plt.xlabel("Shape Factor (Φ)")
     plt.ylabel("Block Area (log scale)")
     plt.title(f"Fingerprint of {city_name}")
     plt.colorbar(label="Area Category")
-    plt.savefig(f"louf_{city_name}_ca.png")
+    plt.savefig(f"louf_{city_name}_ca_t.png")
     plt.show()
 
 
