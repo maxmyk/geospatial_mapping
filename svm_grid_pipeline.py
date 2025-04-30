@@ -51,48 +51,7 @@ sampling_strategies = {
 
 # ==========
 
-shape_factors = [f"phi_shape_factor{i}" for i in range(30)]
-phi_area_bins = []
-for bin_label in ["2_3", "3_4", "4_5"]:
-    phi_area_bins.extend([f"phi_log_area_{bin_label}_{i}" for i in range(30)])
-block_shape_counts = [f"n_blocks_by_shape_factor{i}" for i in range(30)]
-
-feature_columns = [
-    "phi_orientation_order",
-    "entropy_simplified",
-    "entropy_weighted",
-    "median_street_segment_length",
-    "avg_circuity",
-    "avg_node_degree",
-    "p_dead_ends",
-    "p_four_way",
-    *shape_factors,
-    *phi_area_bins,
-    "zoom",
-    "blocks_area",
-    "span_lat",
-    "span_lon",
-    "number_of_blocks",
-    *block_shape_counts,
-    "area_by_boundary",
-    "latitude",
-    "longitude",
-    "zoom_lat",
-    "zoom_lon",
-]
-
-csv_files = glob.glob("PoC/results_pt_all/*.csv")
-city_names = [os.path.splitext(os.path.basename(f))[0].split("_")[0] for f in csv_files]
-df_list = []
-for f, name in zip(csv_files, city_names):
-    row = pd.read_csv(f, header=None)
-    row["city_name"] = name
-    df_list.append(row)
-df = pd.concat(df_list, ignore_index=True)
-
-# save the data for later use
-feature_columns.append("city_name")
-df.columns = feature_columns
+df = pd.read_csv("results_pt_all_combined.csv")
 df = df[df["zoom"] == 12]
 
 labels = {}
@@ -107,15 +66,12 @@ print(df.head())
 print(df["label"].value_counts())
 
 # adding data from other countries for A and B labels to balance the dataset
-df_A = pd.read_csv("real_A_candidates.csv")
-df_B = pd.read_csv("real_B_candidates.csv")
-df_A1 = pd.read_csv("real_A_candidates_500m.csv")
-df_B1 = pd.read_csv("real_B_candidates_500m.csv")
-df_C = pd.read_csv("real_C_candidates_4k12.csv")
+df_A = pd.read_csv("augmentation_A.csv")
+df_B = pd.read_csv("augmentation_B.csv")
+df_C = pd.read_csv("augmentation_C.csv")
 
 merge_map = {'A': 'AB', 'B': 'AB', 'C': 'C', 'D': 'D'}
-# extending the dataset with real A and B candidates
-df = pd.concat([df, df_A, df_B, df_A1, df_B1, df_C], ignore_index=True)
+df = pd.concat([df, df_A, df_B, df_C], ignore_index=True)
 df = df.dropna(subset=["label"])
 df['label'] = df['label'].replace(merge_map)
 print(df["label"].value_counts())

@@ -14,3 +14,5 @@
 *.pkl
 *.json
 *.xml
+*.csv
+*.png
