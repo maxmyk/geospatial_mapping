@@ -1,5 +1,6 @@
 import cv2
 import os
+import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
@@ -66,12 +67,31 @@ def draw_matches(img1, img2, kp1, kp2, inliers, outliers):
     return out_img
 
 
-def main(img1_path, img2_path):
+def resize_image(img, width=1600, resize_float=False):
+    if resize_float:
+        img = img.astype(np.float32) / 255.0
+    h, w = img.shape
+    scale = width / w
+    resized = cv2.resize(img, (width, int(h * scale)), interpolation=cv2.INTER_LINEAR)
+    return resized.astype(np.float32) if resize_float else resized
+
+
+def main(img1_path, img2_path, iter, results_list):
     if not os.path.exists(img1_path) or not os.path.exists(img2_path):
         raise FileNotFoundError("Images not found")
 
-    img1 = cv2.imread(img1_path, cv2.IMREAD_GRAYSCALE)
-    img2 = cv2.imread(img2_path, cv2.IMREAD_GRAYSCALE)
+    img1 = cv2.imread(img1_path, cv2.IMREAD_ANYCOLOR)
+    img2 = cv2.imread(img2_path, cv2.IMREAD_ANYCOLOR)
+
+    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+
+    img1 = resize_image(img1, width=1600, resize_float=True)
+    img2 = resize_image(img2, width=1600, resize_float=True)
+
+    # converting to uint8 Grayscale
+    img1 = (img1 * 255).astype(np.uint8)
+    img2 = (img2 * 255).astype(np.uint8)
 
     results = {}
     ratios = {}
@@ -83,8 +103,20 @@ def main(img1_path, img2_path):
         total = len(inliers) + len(outliers)
         ratios[name] = len(inliers) / total if total > 0 else 0
 
+        results_list.append(
+            {
+                "image_pair": f"{os.path.basename(img1_path)} vs {os.path.basename(img2_path)}",
+                "descriptor": name,
+                "kp1": len(kp1),
+                "kp2": len(kp2),
+                "inliers": len(inliers),
+                "outliers": len(outliers),
+                "inlier_ratio": ratios[name],
+            }
+        )
+
     fig1 = plt.figure(figsize=(20, 10))
-    gs = gridspec.GridSpec(3, 2)
+    gs = gridspec.GridSpec(2, 2)
     for i, (name, data) in enumerate(results.items()):
         img, (il, ol, k1, k2) = data
         ax = fig1.add_subplot(gs[i])
@@ -94,7 +126,7 @@ def main(img1_path, img2_path):
         )
         ax.axis("off")
     plt.tight_layout()
-    plt.savefig(img1_path.replace(".png", "_desc.png"))
+    plt.savefig(img1_path.replace(".png", f"_desc_{iter}.png"))
 
     fig2, ax2 = plt.subplots(figsize=(10, 5))
     ax2.bar(ratios.keys(), [r * 100 for r in ratios.values()])
@@ -105,23 +137,56 @@ def main(img1_path, img2_path):
     ax2.yaxis.set_minor_formatter(mticker.ScalarFormatter())
 
     ax2.grid(True)
-    plt.savefig(img1_path.replace(".png", "_desc1.png"))
-    # plt.show()
+    plt.savefig(img1_path.replace(".png", f"_desc_{iter}_ratios.png"))
 
 
 if __name__ == "__main__":
+    results_list = []
+
     images = [
-        ("PoC/opencv/LV.png", "PoC/opencv/LV1.png"),
-        ("PoC/opencv/LVGM.png", "PoC/opencv/LV1GM.png"),
+        ("PoC/A/13251349_A_bw_osm.png", "PoC/A/13251349_A_bw_sat.png"),
+        # ("PoC/A/13251349_A_bw_osm.png", "PoC/A/13251349_A_bw_sat_roads.png"),
+        ("PoC/A/5989554_A_bw_osm.png", "PoC/A/5989554_A_bw_sat.png"),
+        # ("PoC/A/5989554_A_bw_osm.png", "PoC/A/5989554_A_bw_sat_roads.png"),
+        ("PoC/A/6384111_A_bw_osm.png", "PoC/A/6384111_A_bw_sat.png"),
+        # ("PoC/A/6384111_A_bw_osm.png", "PoC/A/6384111_A_bw_sat_roads.png"),
+        ("PoC/B/6427489_B_bw_osm.png", "PoC/B/6427489_B_bw_sat.png"),
+        # ("PoC/B/6427489_B_bw_osm.png", "PoC/B/6427489_B_bw_sat_roads.png"),
+        ("PoC/B/1391324_B_bw_osm.png", "PoC/B/1391324_B_bw_sat.png"),
+        # ("PoC/B/1391324_B_bw_osm.png", "PoC/B/1391324_B_bw_sat_roads.png"),
+        ("PoC/C/6386158_C_bw_osm.png", "PoC/C/6386158_C_bw_sat.png"),
+        # ("PoC/C/6386158_C_bw_osm.png", "PoC/C/6386158_C_bw_sat_roads.png"),
+        ("PoC/C/1391333_C_bw_osm.png", "PoC/C/1391333_C_bw_sat.png"),
+        # ("PoC/C/1391333_C_bw_osm.png", "PoC/C/1391333_C_bw_sat_roads.png"),
+        ("PoC/D/4112279_D_bw_osm.png", "PoC/D/4112279_D_bw_sat.png"),
+        # ("PoC/D/4112279_D_bw_osm.png", "PoC/D/4112279_D_bw_sat_roads.png"),
+        ("PoC/D/12905750_D_bw_osm.png", "PoC/D/12905750_D_bw_sat.png"),
+        # ("PoC/D/12905750_D_bw_osm.png", "PoC/D/12905750_D_bw_sat_roads.png"),
     ]
 
     descriptors = {
-        "ORB": cv2.ORB_create(nfeatures=1000),
         "SIFT": cv2.SIFT_create(),
         "AKAZE": cv2.AKAZE_create(),
         "BRISK": cv2.BRISK_create(),
         "KAZE": cv2.KAZE_create(),
     }
 
-    for image1, image2 in tqdm(images):
-        main(image1, image2)
+    for i, (image1, image2) in tqdm(enumerate(images)):
+        main(image1, image2, i, results_list)
+
+    with open("features_detected.csv", "w", newline="") as csvfile:
+        writer = csv.DictWriter(
+            csvfile,
+            fieldnames=[
+                "image_pair",
+                "descriptor",
+                "kp1",
+                "kp2",
+                "inliers",
+                "outliers",
+                "inlier_ratio",
+            ],
+        )
+        writer.writeheader()
+        for row in results_list:
+            writer.writerow(row)
