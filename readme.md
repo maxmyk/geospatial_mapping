@@ -32,3 +32,4 @@ Run ```python classification_new.py```. Trains the SVM with correct parameters, 
 ## Important!
 - ```ds_pt.tsv``` - Copyright (C) 2025 by [Curiosio](https://curiosio.com/), Licensed under ECL (Educational Community License). Portuguese settlements dataset.
 - Files used for dataset augmentation were derived using the same pipeline, but the initial ```*.tsv``` settlements dataset remains private.
+- ```results_pt_all_combined.csv``` contains 1009 labeled Portuguese settlements of zoom 12 with features.
